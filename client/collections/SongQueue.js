@@ -10,6 +10,15 @@ var SongQueue = Songs.extend({
         this.playFirst();
       }
     });
+
+    // remove a song from the queue once it is done playing
+    // and play first song of queue, if available
+    this.on('ended', function(song) {
+      this.remove(song);
+      if (this.length > 0) {
+        this.playFirst();
+      }
+    }, this);
   },
 
   playFirst: function(){
