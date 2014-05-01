@@ -2,6 +2,14 @@
 var SongQueue = Songs.extend({
 
   initialize: function(){
+
+    // automatically play the first song after adding a song
+    // to an empty queue
+    this.on('add', function() {
+      if (this.length === 1) {
+        this.playFirst();
+      }
+    });
   },
 
   playFirst: function(){
